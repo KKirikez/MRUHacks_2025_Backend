@@ -1,0 +1,27 @@
+{
+  "name": "mruhacks_2025_backend",
+  "version": "1.0.0",
+  "description": "A backend for our project created for MRUHacks 2025.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KKirikez/MRUHacks_2025_Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/KKirikez/MRUHacks_2025_Backend/issues"
+  },
+  "homepage": "https://github.com/KKirikez/MRUHacks_2025_Backend#readme",
+  "dependencies": {
+    "@serialport/bindings-cpp": "^13.0.1",
+    "@serialport/parser-readline": "^13.0.0",
+    "@serialport/stream": "^13.0.0",
+    "express": "^5.1.0"
+  }
+}
