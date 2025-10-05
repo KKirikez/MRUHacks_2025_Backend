@@ -6,6 +6,7 @@ app.use(express.json());
 
 app.get('/ping', (req, res) => {
   // I dont wanna set CORS up, and this isnt a real product
+  health = ping();
   res.header("Access-Control-Allow-Origin", "*"); 
   res.json({ health });
 });
