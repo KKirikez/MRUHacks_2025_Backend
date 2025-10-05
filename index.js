@@ -4,12 +4,13 @@ let health = 0;
 let maxHealth = 5;
 let minHealth = 0;
 
-
 function signalUp() {
     if (health < maxHealth) {
         health++;
         moveUp();
         console.log(`Health increased to ${health}`);
+    } else {
+        console.log(`Health is at maximum (${maxHealth})`);
     }
 };
 
@@ -18,7 +19,11 @@ function signalDown() {
         health--;
         moveDown();
         console.log(`Health decreased to ${health}`);
+    } else {
+        console.log(`Health is at minimum (${minHealth})`);
     }
 };
+
+
 
 module.exports = { signalUp, signalDown };
