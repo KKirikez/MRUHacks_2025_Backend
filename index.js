@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 let maxHealth = 3;
-let minHealth = 0;
-let health = 0;
+let minHealth = 1;
+let health = 1;
 let lastSignalTime = 0;
 let checkInTime = 0;
 
@@ -36,7 +36,7 @@ function startup() {
 
 
 function signalUp() {
-    if (health < maxHealth) {
+    if (health <= maxHealth) {
         health++;
         moveUp();
         console.log(`Health increased to ${health}`);
@@ -47,7 +47,7 @@ function signalUp() {
 };
 
 function signalDown() {
-    if (health > minHealth) {
+    if (health >= minHealth) {
         health--;
         moveDown();
         console.log(`Health decreased to ${health}`);
@@ -57,6 +57,27 @@ function signalDown() {
     console.log("Moved down");
 };
 
+function ping() {
+    return {"health": health };
+}
+
+function setHealthLED() {
+    switch (health) {
+        case 1:
+            
+            break;
+        case 2:
+            // Set LED to yellow
+            break;
+        case 3:
+            // Set LED to red
+            break;
+        default:
+            // Turn off LED
+            break;
+    }
+}
 
 
-module.exports = { signalUp, signalDown, startup };
+
+module.exports = { signalUp, signalDown, startup, ping };
