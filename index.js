@@ -4,7 +4,7 @@ const path = require('path');
 
 let maxHealth = 3;
 let minHealth = 1;
-let health = 1;
+let health = 3;
 
 
 function signalUp() {
