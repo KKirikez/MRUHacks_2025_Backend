@@ -18,12 +18,12 @@ void loop() {
 
     if (cmd == "STEP_UP") {
       digitalWrite(LED_BUILTIN, HIGH);
-      myStepper.step(stepsPerRevolution);
+      myStepper.step(-stepsPerRevolution * 0.25);
       digitalWrite(LED_BUILTIN, LOW);
       Serial.println("ACK: MOVED UP");
     } else if (cmd == "STEP_DOWN") {
       digitalWrite(LED_BUILTIN, HIGH);
-      myStepper.step(-stepsPerRevolution);
+      myStepper.step(stepsPerRevolution * 0.25);
       digitalWrite(LED_BUILTIN, LOW);
       Serial.println("ACK: MOVED DOWN");
     } else {
@@ -32,4 +32,3 @@ void loop() {
     }
   }
 }
-
