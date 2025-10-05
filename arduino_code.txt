@@ -2,6 +2,10 @@ This is the code that is running on the arduino. We don't wanna create a whole n
 
 #include <Stepper.h>
 
+int redPin= 3;
+int greenPin = 5;
+int  bluePin = 6;
+
 const int stepsPerRevolution = 2048;
 Stepper myStepper(stepsPerRevolution, 8, 10, 9, 11);
 
@@ -9,10 +13,14 @@ void setup() {
   Serial.begin(115200);
   pinMode(LED_BUILTIN, OUTPUT);
   myStepper.setSpeed(10);
+
+  pinMode(redPin,  OUTPUT);              
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
 }
 
 void loop() {
-  if (Serial.available()) {
+ if (Serial.available()) {
     String cmd = Serial.readStringUntil('\n');
     cmd.trim();
 
@@ -26,9 +34,24 @@ void loop() {
       myStepper.step(stepsPerRevolution * 0.25);
       digitalWrite(LED_BUILTIN, LOW);
       Serial.println("ACK: MOVED DOWN");
+    } else if (cmd == "SET_GREEN") {
+      setColor(0,  255, 0); // Green Color
+       Serial.println("ACK: GREEN LIGHT");
+    } else if (cmd == "SET_YELLOW") {
+      setColor(50, 255, 0); // Yellow Color
+      Serial.println("ACK: YELLOW LIGHT");
+    } else if (cmd == "SET_RED") {
+      setColor(255, 0, 0); // Red Color
+      Serial.println("ACK: RED LIGHT");
     } else {
       Serial.print("Unknown cmd: ");
       Serial.println(cmd);
     }
   }
+}
+
+void setColor(int r, int g, int b) {
+  analogWrite(redPin, r);
+  analogWrite(greenPin, g);
+  analogWrite(bluePin, b);
 }
