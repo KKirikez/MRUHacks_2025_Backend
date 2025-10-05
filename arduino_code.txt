@@ -1,8 +1,14 @@
 This is the code that is running on the arduino. We don't wanna create a whole new repo to store all this, so it will be stored here.
 
+#include <Stepper.h>
+
+const int stepsPerRevolution = 2048;
+Stepper myStepper(stepsPerRevolution, 8, 10, 9, 11);
+
 void setup() {
   Serial.begin(115200);
   pinMode(LED_BUILTIN, OUTPUT);
+  myStepper.setSpeed(10);
 }
 
 void loop() {
@@ -10,15 +16,20 @@ void loop() {
     String cmd = Serial.readStringUntil('\n');
     cmd.trim();
 
-    if (cmd == "LED_ON") {
+    if (cmd == "STEP_UP") {
       digitalWrite(LED_BUILTIN, HIGH);
-      Serial.println("ACK: LED ON");
-    } else if (cmd == "LED_OFF") {
+      myStepper.step(stepsPerRevolution);
       digitalWrite(LED_BUILTIN, LOW);
-      Serial.println("ACK: LED OFF");
+      Serial.println("ACK: MOVED UP");
+    } else if (cmd == "STEP_DOWN") {
+      digitalWrite(LED_BUILTIN, HIGH);
+      myStepper.step(-stepsPerRevolution);
+      digitalWrite(LED_BUILTIN, LOW);
+      Serial.println("ACK: MOVED DOWN");
     } else {
       Serial.print("Unknown cmd: ");
       Serial.println(cmd);
     }
   }
 }
+
