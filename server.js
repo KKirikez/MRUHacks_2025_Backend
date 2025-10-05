@@ -1,5 +1,5 @@
 const express = require('express');
-const { signalUp, signalDown, startup, ping, debugSetHealth } = require('./index');
+const { signalUp, signalDown, ping, debugSetHealth } = require('./index');
 
 const app = express();
 app.use(express.json());
@@ -26,16 +26,6 @@ app.post('/down', (req, res) => {
   try {
     signalDown();
     res.json({ "down_ok": true});
-  } catch (err) {
-    res.json({ "error": err.message });
-  }
-});
-
-app.post('/start', (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*"); 
-  try {
-    startup();
-    res.json({ "start_ok": true });
   } catch (err) {
     res.json({ "error": err.message });
   }

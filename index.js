@@ -5,34 +5,6 @@ const path = require('path');
 let maxHealth = 3;
 let minHealth = 2;
 let health = 3;
-let lastSignalTime = 0;
-let checkInTime = 0;
-
-function startup() {
-    path.exists('./data/saved.txt', function(exists) { 
-        if (exists) { 
-          console.log('Saved file exists.')
-            fs.readFile('./data/saved.txt', (err, data) => {
-                if (err) throw err;
-                let stats = JSON.parse(data);
-                health = stats.health;
-                lastSignalTime = stats.lastSignalTime;
-                checkInTime = stats.checkInTime;
-                console.log(`Health: ${health}, Last Signal Time: ${lastSignalTime}, Check In Time: ${checkInTime}`);
-            });
-        } else {
-            let stats = {
-                "health": 0,
-                "lastSignalTime": 0,
-                "checkInTime": 0
-            }
-            fs.writeFile('./data/saved.txt', JSON.stringify(stats), (err) => {
-                if (err) throw err;
-                console.log('Saved file created.');
-            });
-        }
-      });
-}
 
 
 function signalUp() {
@@ -91,4 +63,4 @@ function debugSetHealth(newHealth) {
 
 
 
-module.exports = { signalUp, signalDown, startup, ping, debugSetHealth };
+module.exports = { signalUp, signalDown, ping, debugSetHealth };
