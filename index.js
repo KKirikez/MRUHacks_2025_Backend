@@ -80,6 +80,15 @@ function setHealthLEDColour(health) {
     }
 }
 
+function debugSetHealth(newHealth) {
+    if (newHealth < minHealth || newHealth > maxHealth) {
+        throw new Error(`Health must be between ${minHealth} and ${maxHealth}`);
+    }
+    health = newHealth;
+    setHealthLEDColour(health);
+    console.log(`Health set to ${health}`);
+}
 
 
-module.exports = { signalUp, signalDown, startup, ping };
+
+module.exports = { signalUp, signalDown, startup, ping, debugSetHealth };

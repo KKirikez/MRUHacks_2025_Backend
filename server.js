@@ -1,5 +1,5 @@
 const express = require('express');
-const { signalUp, signalDown, startup, ping } = require('./index');
+const { signalUp, signalDown, startup, ping, debugSetHealth } = require('./index');
 
 const app = express();
 app.use(express.json());
@@ -36,6 +36,20 @@ app.post('/start', (req, res) => {
   try {
     startup();
     res.json({ "start_ok": true });
+  } catch (err) {
+    res.json({ "error": err.message });
+  }
+});
+
+app.post('/setHealth', ( req, res) => {
+  res.header("Access-Control-Allow-Origin", "*"); 
+  try {
+    const { health } = req.body;
+    if (typeof health !== 'number' || health < 0 || health > 3) {
+      throw new Error('Health must be a number between 0 and 3');
+    }
+    debugSetHealth(health);
+    res.json({ "setHealth_ok": true });
   } catch (err) {
     res.json({ "error": err.message });
   }
