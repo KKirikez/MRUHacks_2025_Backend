@@ -9,6 +9,7 @@ async function moveDown() {
 }
 
 async function setHealthLED(colour) {
+  console.log('SET_'+colour)
   sendCmd('SET_'+colour);
 }
 
