@@ -12,13 +12,13 @@ Stepper myStepper(stepsPerRevolution, 8, 10, 9, 11);
 void setup() {
   Serial.begin(115200);
   pinMode(LED_BUILTIN, OUTPUT);
-  myStepper.setSpeed(10);
+  myStepper.setSpeed(3);
 
   pinMode(redPin,  OUTPUT);              
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
 
-  setColor(0, 0, 0);
+  setColor(0,  255, 0);
 }
 
 void loop() {
@@ -28,12 +28,12 @@ void loop() {
 
     if (cmd == "STEP_UP") {
       digitalWrite(LED_BUILTIN, HIGH);
-      myStepper.step(-stepsPerRevolution * 0.25);
+      myStepper.step(-stepsPerRevolution * 0.16);
       digitalWrite(LED_BUILTIN, LOW);
       Serial.println("ACK: MOVED UP");
     } else if (cmd == "STEP_DOWN") {
       digitalWrite(LED_BUILTIN, HIGH);
-      myStepper.step(stepsPerRevolution * 0.25);
+      myStepper.step(stepsPerRevolution * 0.16);
       digitalWrite(LED_BUILTIN, LOW);
       Serial.println("ACK: MOVED DOWN");
     } else if (cmd == "SET_GREEN") {
