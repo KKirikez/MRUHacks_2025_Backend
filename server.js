@@ -4,7 +4,11 @@ const { signalUp, signalDown, startup, ping } = require('./index');
 const app = express();
 app.use(express.json());
 
-app.get('/ping', ping);
+app.get('/ping', (req, res) => {
+  health = ping();
+  res.json({ "health": health });
+});
+
 
 app.post('/up', (req, res) => {
   try {

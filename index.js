@@ -1,8 +1,8 @@
-const { moveUp, moveDown } = require('./controllers/stepper');
+const { moveUp, moveDown, setHealthLED } = require('./controllers/stepper');
 const fs = require('fs');
 const path = require('path');
 
-let maxHealth = 3;
+let maxHealth = 30;
 let minHealth = 1;
 let health = 1;
 let lastSignalTime = 0;
@@ -40,6 +40,7 @@ function signalUp() {
         health++;
         moveUp();
         console.log(`Health increased to ${health}`);
+        setHealthLEDColour(health);
     } else {
         console.log(`Health is at maximum (${maxHealth})`);
     }
@@ -51,29 +52,27 @@ function signalDown() {
         health--;
         moveDown();
         console.log(`Health decreased to ${health}`);
+        setHealthLEDColour(health);
     } else {
         console.log(`Health is at minimum (${minHealth})`);
     }
     console.log("Moved down");
 };
 
-function ping() {
-    return {"health": health };
+function ping(req, res) {
+    return health;
 }
 
-function setHealthLED() {
+function setHealthLEDColour() {
     switch (health) {
         case 1:
-            
+            setHealthLED('RED');
             break;
         case 2:
-            // Set LED to yellow
-            break;
-        case 3:
-            // Set LED to red
+            setHealthLED('YELLOW');
             break;
         default:
-            // Turn off LED
+            setHealthLED('GREEN');
             break;
     }
 }

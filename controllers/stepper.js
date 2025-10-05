@@ -5,7 +5,11 @@ async function moveUp() {
 }
 
 async function moveDown() {
-    sendCmd('STEP_DOWN');
+  sendCmd('STEP_DOWN');
 }
 
-module.exports = { moveUp, moveDown };
+async function setHealthLED(colour) {
+  sendCmd('SET_'+colour);
+}
+
+module.exports = { moveUp, moveDown, setHealthLED };
