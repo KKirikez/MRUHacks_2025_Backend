@@ -5,10 +5,10 @@ const app = express();
 app.use(express.json());
 
 app.get('/ping', (req, res) => {
-  health = ping();
-  res.json({ "health": health });
+  // I dont wanna set CORS up, and this isnt a real product
+  res.header("Access-Control-Allow-Origin", "*"); 
+  res.json({ health });
 });
-
 
 app.post('/up', (req, res) => {
   try {
