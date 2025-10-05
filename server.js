@@ -12,6 +12,7 @@ app.get('/ping', (req, res) => {
 });
 
 app.post('/up', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*"); 
   try {
     signalUp();
     res.json({ "up_ok": true});
@@ -21,6 +22,7 @@ app.post('/up', (req, res) => {
 });
 
 app.post('/down', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*"); 
   try {
     signalDown();
     res.json({ "down_ok": true});
@@ -30,6 +32,7 @@ app.post('/down', (req, res) => {
 });
 
 app.post('/start', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*"); 
   try {
     startup();
     res.json({ "start_ok": true });
