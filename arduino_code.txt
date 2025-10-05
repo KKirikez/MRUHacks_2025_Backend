@@ -1,2 +1,24 @@
 This is the code that is running on the arduino. We don't wanna create a whole new repo to store all this, so it will be stored here.
 
+void setup() {
+  Serial.begin(115200);
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+  if (Serial.available()) {
+    String cmd = Serial.readStringUntil('\n');
+    cmd.trim();
+
+    if (cmd == "LED_ON") {
+      digitalWrite(LED_BUILTIN, HIGH);
+      Serial.println("ACK: LED ON");
+    } else if (cmd == "LED_OFF") {
+      digitalWrite(LED_BUILTIN, LOW);
+      Serial.println("ACK: LED OFF");
+    } else {
+      Serial.print("Unknown cmd: ");
+      Serial.println(cmd);
+    }
+  }
+}
