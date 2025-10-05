@@ -19,9 +19,8 @@
   },
   "homepage": "https://github.com/KKirikez/MRUHacks_2025_Backend#readme",
   "dependencies": {
-    "@serialport/bindings-cpp": "^13.0.1",
     "@serialport/parser-readline": "^13.0.0",
-    "@serialport/stream": "^13.0.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "serialport": "^13.0.0"
   }
 }
