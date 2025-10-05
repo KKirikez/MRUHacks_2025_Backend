@@ -1,10 +1,10 @@
 const express = require('express');
-const { signalUp, signalDown, startup } = require('./index');
+const { signalUp, signalDown, startup, ping } = require('./index');
 
 const app = express();
 app.use(express.json());
 
-app.get('/ping', (req, res) => res.json({ ok: true }));
+app.get('/ping', ping);
 
 app.post('/up', (req, res) => {
   try {
