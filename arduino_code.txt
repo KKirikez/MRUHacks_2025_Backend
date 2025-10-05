@@ -1,0 +1,2 @@
+This is the code that is running on the arduino. We don't wanna create a whole new repo to store all this, so it will be stored here.
+
