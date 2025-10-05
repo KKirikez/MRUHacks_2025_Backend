@@ -1,3 +1,4 @@
 {
-    "arduino_port": "ttyACM0"
+    "arduino_port": "ttyACM0",
+    "pairing_code": "3121"
 }
